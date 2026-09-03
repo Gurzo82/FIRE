@@ -30,7 +30,7 @@
 	},
 	"dependencies": {
 		"@sveltejs/adapter-static": "^3.0.10",
-		"@tailwindcss/vite": "^4.2.2",
+		"@tailwindcss/vite": "^4.3.3",
 		"dexie": "^4.4.2",
 		"echarts": "^6.0.0",
 		"flowbite": "^4.0.1",
