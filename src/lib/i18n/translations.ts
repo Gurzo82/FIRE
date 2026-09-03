@@ -18,6 +18,8 @@ export const translations: Record<Locale, Record<string, string>> = {
     'nav.community': 'Community',
     'nav.guide': 'Guida',
     'nav.settings': 'Impostazioni',
+    'nav.aiAssistant': 'Assistente AI',
+    'nav.methodology': 'Metodologia e Fonti',
     // Common
     'common.save': 'Salva',
     'common.cancel': 'Annulla',
@@ -114,6 +116,8 @@ export const translations: Record<Locale, Record<string, string>> = {
     'nav.community': 'Community',
     'nav.guide': 'Guide',
     'nav.settings': 'Settings',
+    'nav.aiAssistant': 'AI Assistant',
+    'nav.methodology': 'Methodology & Sources',
     // Common
     'common.save': 'Save',
     'common.cancel': 'Cancel',
