@@ -41,7 +41,7 @@
 		"jstat": "^1.9.6",
 		"papaparse": "^5.5.3",
 		"puppeteer-core": "^24.40.0",
-		"simple-statistics": "^7.8.9",
+		"simple-statistics": "^7.11.0",
 		"tailwindcss": "^4.2.2",
 		"xlsx": "^0.18.5"
 	}
