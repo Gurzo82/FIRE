@@ -574,17 +574,46 @@
 			{#if sensitivityParams}
 				<div class="mb-6">
 					<SensitivityTornado baseParams={sensitivityParams} shock={0.1} metric="finalPortfolio" />
+					<p class="mt-3 text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+						<strong>Cosa mostra:</strong> l'<strong>analisi di sensitività</strong> (tornado chart) del piano FIRE.
+						Ogni variabile di input (es. rendimento atteso, tasso prelievo, inflazione, spese, contributi) 
+						è shockata di <strong>±10%</strong> rispetto al baseline.
+						Le barre <span class="text-red-600 dark:text-red-400 font-medium">rosse</span> mostrano l'impatto di uno shock negativo (−10%), 
+						quelle <span class="text-green-600 dark:text-green-400 font-medium">verdi</span> uno shock positivo (+10%).
+						Le variabili sono ordinate per impatto assoluto (più influenti in alto).
+					</p>
+					<p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+						<strong>A cosa serve:</strong> identificare le <strong>leve critiche</strong> del piano.
+						Se il "Rendimento atteso" ha la barra più lunga, piccole variazioni di mercato cambiano molto il risultato finale → 
+						serve allocazione più conservativa o margine di sicurezza maggiore.
+						Passa il mouse sulle barre per vedere i valori esatti.
+					</p>
 				</div>
 			{/if}
 
 			<!-- Projection Chart -->
-			<ProjectionChart
-				{projections}
-				{fireNumber}
-				{retirementAge}
-				{currentAge}
-				inflationRate={inflationRate / 100}
-			/>
+			<div>
+				<ProjectionChart
+					{projections}
+					{fireNumber}
+					{retirementAge}
+					{currentAge}
+					inflationRate={inflationRate / 100}
+				/>
+				<p class="mt-3 text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+					<strong>Cosa mostra:</strong> la <strong>proiezione deterministica</strong> del portafoglio anno per anno.
+					La linea <span class="text-green-600 dark:text-green-400 font-medium">verde</span> = fase di <strong>accumulo</strong> (contributi + rendimenti composti), 
+					la linea <span class="text-amber-600 dark:text-amber-400 font-medium">arancione</span> = fase di <strong>decumulo</strong> (prelievi per spese).
+					La linea tratteggiata <span class="text-red-600 dark:text-red-400 font-medium">rossa</span> = <strong>Target FIRE</strong> (in euro correnti, cresce con l'inflazione).
+					Il tooltip mostra dettagli: portafoglio, target, contributi, prelievi, rendimenti, tasse.
+				</p>
+				<p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+					<strong>A cosa serve:</strong> visualizzare il percorso "caso base" senza alea. 
+					Utile per pianificare i flussi di cassa, verificare quando si raggiunge il FIRE Number 
+					e stimare la durata del patrimonio in decumulo. 
+					Attiva "Stima rendimento da allocazione" per un rendimento derivato da azioni/obbligazioni.
+				</p>
+			</div>
 		</TabItem>
 
 		<TabItem>

@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { page } from '$app/state';
+	import { t } from '$lib/i18n/store.svelte';
 	import {
 		Heading,
 		Breadcrumb,
@@ -291,6 +293,34 @@
 		</Badge>
 	</div>
 
+	<!-- Program Description -->
+	<Card class="max-w-none mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800">
+		<div class="flex items-start gap-3">
+			<FireSolid class="w-6 h-6 text-blue-500 mt-0.5 flex-shrink-0" />
+			<div class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+				<p class="font-medium text-blue-800 dark:text-blue-200 mb-2">
+					Cos'è FIRE Planner e come ti aiuta
+				</p>
+				<p class="mb-2">
+					<strong>FIRE Planner</strong> è uno strumento gratuito e privato per pianificare la tua indipendenza finanziaria (Financial Independence, Retire Early) 
+					con calcoli specifici per il <strong>contesto fiscale e previdenziale italiano</strong>.
+				</p>
+				<p class="mb-2">
+					Il programma calcola il tuo <strong>FIRE Number</strong> (il capitale necessario per vivere di rendita), 
+					il <strong>tasso di risparmio</strong>, gli <strong>anni al FIRE</strong> e proietta l'evoluzione del tuo patrimonio nel tempo.
+				</p>
+				<p class="mb-2">
+					Include simulazioni <strong>Monte Carlo</strong> per testare la robustezza del piano contro i ribassi di mercato,
+					ottimizzazione fiscale dei prelievi (IRPEF, capital gains 26%/12,5%, bollo, IVAFE), 
+					stima della pensione INPS e calcolo del gap pensionistico.
+				</p>
+				<p class="text-xs text-blue-700 dark:text-blue-300">
+					🔒 <strong>Privacy totale:</strong> tutti i calcoli avvengono nel browser, i dati restano sul tuo dispositivo (IndexedDB) e non vengono mai inviati a server esterni.
+				</p>
+			</div>
+		</div>
+	</Card>
+
 	<!-- Market Ticker -->
 	<MarketTicker />
 
@@ -374,6 +404,16 @@
 			</h5>
 			{#if projections.length > 0}
 				<EChart options={projectionChartOptions} height="350px" />
+				<p class="mt-3 text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+					<strong>Cosa mostra:</strong> l'evoluzione stimata del tuo patrimonio anno per anno, dalla situazione attuale fino all'aspettativa di vita.
+					La linea <span class="text-green-600 dark:text-green-400 font-medium">verde</span> rappresenta la fase di <strong>accumulo</strong> (contributi + rendimenti), 
+					la linea <span class="text-amber-600 dark:text-amber-400 font-medium">arancione</span> la fase di <strong>decumulo</strong> (prelievi per spese).
+					La linea tratteggiata <span class="text-red-600 dark:text-red-400 font-medium">rossa</span> indica il <strong>Target FIRE</strong> aggiustato per l'inflazione.
+				</p>
+				<p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+					<strong>A cosa serve:</strong> visualizzare se e quando il patrimonio supera il target FIRE, 
+					quanto dura in decumulo e l'impatto di tasse/inflazione. Passa il mouse per vedere i dettagli anno per anno.
+				</p>
 			{:else}
 				<p class="text-gray-500 dark:text-gray-400 py-8 text-center">
 					Dati insufficienti per la proiezione
@@ -388,6 +428,16 @@
 			</h5>
 			{#if netWorth > 0}
 				<EChart options={allocationChartOptions} height="350px" />
+				<p class="mt-3 text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+					<strong>Cosa mostra:</strong> la composizione del tuo portafoglio per classe di asset 
+					(Azioni, Obbligazioni, Liquidità, Immobiliare, Oro, Crypto, Fondo Pensione, TFR, Altro).
+					Ogni fetta è proporzionale al valore corrente di quell'asset.
+				</p>
+				<p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+					<strong>A cosa serve:</strong> verificare la diversificazione e il profilo di rischio del portafoglio. 
+					Un'eccessiva concentrazione in una singola classe aumenta la volatilità. 
+					Clicca sulla legenda per isolare/nascondere una classe.
+				</p>
 			{:else}
 				<p class="text-gray-500 dark:text-gray-400 py-8 text-center">
 					Nessun patrimonio inserito

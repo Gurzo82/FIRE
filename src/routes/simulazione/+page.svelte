@@ -450,22 +450,67 @@
 			<!-- Success Gauge + Key Stats -->
 			<div class="mb-8">
 				<SuccessGauge {result} />
+				<p class="mt-3 text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+					<strong>Cosa mostra:</strong> il <strong>tasso di successo</strong> della simulazione (percentuale di scenari in cui il patrimonio non si esaurisce prima della fine dell'orizzonte temporale).
+					L'anello colorato indica: <span class="text-green-600 dark:text-green-400 font-medium">verde</span> ≥95% (eccellente), 
+					<span class="text-amber-600 dark:text-amber-400 font-medium">giallo</span> 80–94% (buono/sufficiente), 
+					<span class="text-red-600 dark:text-red-400 font-medium">rosso</span> <80% (a rischio).
+					Sotto: valore finale mediano, media e percentili P5–P95.
+				</p>
+				<p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+					<strong>A cosa serve:</strong> valutare rapidamente la robustezza del piano. Un tasso >90% è considerato solido; 
+					se <80% serve rivedere spese, prelievo o allocazione. Usa la Simulazione per testare varianti.
+				</p>
 			</div>
 
 			<!-- Fan Chart -->
 			<div class="mb-8">
 				<FanChart {result} />
+				<p class="mt-3 text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+					<strong>Cosa mostra:</strong> la <strong>proiezione probabilistica</strong> del portafoglio anno per anno tramite bande di confidenza:
+					<span class="text-blue-200 dark:text-blue-800 font-medium">P5–P95</span> (chiara, 90% degli scenari), 
+					<span class="text-blue-300 dark:text-blue-700 font-medium">P10–P90</span> (media, 80%), 
+					<span class="text-blue-400 dark:text-blue-600 font-medium">P25–P75</span> (scura, 50% centrale), 
+					e la <span class="text-blue-600 dark:text-blue-400 font-medium">mediana (P50)</span> (linea blu).
+				</p>
+				<p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+					<strong>A cosa serve:</strong> vedere l'intervallo di possibili evoluzioni del patrimonio, non solo la media. 
+					L'allargamento delle bande nel tempo riflette l'incertezza crescente. 
+					Usa lo slider in basso per zoomare su periodi specifici.
+				</p>
 			</div>
 
 			<!-- Histogram + Summary Table -->
 			<div class="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-8">
-				<HistogramChart {result} />
+				<div>
+					<HistogramChart {result} />
+					<p class="mt-3 text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+						<strong>Cosa mostra:</strong> la <strong>distribuzione dei valori finali</strong> del portafoglio alla fine della simulazione.
+						L'istogramma approssima la forma della distribuzione; la barra <span class="text-blue-600 dark:text-blue-400 font-medium">blu scura</span> indica il bin contenente la <strong>mediana</strong>, 
+						la linea tratteggiata <span class="text-blue-600 dark:text-blue-400 font-medium">blu</span> la mediana esatta, 
+						quella <span class="text-red-600 dark:text-red-400 font-medium">rossa</span> la media.
+					</p>
+					<p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+						<strong>A cosa serve:</strong> capire la forma della distribuzione (simmetrica, asimmetrica, coda pesante) 
+						e la probabilità di risultati molto diversi dalla mediana.
+					</p>
+				</div>
 				<SummaryTable {result} />
 			</div>
 
 			<!-- Scenario Detail Tabs -->
 			<div class="mb-8">
 				<ScenarioTabs {result} />
+				<p class="mt-3 text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+					<strong>Cosa mostra:</strong> analisi dettagliate per scenari specifici: 
+					<strong>Pessimista (P5)</strong>, <strong>Mediano (P50)</strong>, <strong>Ottimista (P95)</strong>, 
+					e <strong>Anno di esaurimento</strong> per gli scenari falliti.
+					Ogni tab mostra flusso di cassa, prelievi, tasse e patrimonio anno per anno.
+				</p>
+				<p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+					<strong>A cosa serve:</strong> prepararsi al "peggior caso plausibile" (P5) e capire 
+					quanto margine c'è nello scenario mediano. Utile per pianificare riserve di sicurezza.
+				</p>
 			</div>
 		</div>
 	</div>
