@@ -87,8 +87,14 @@
 			? new Date().getFullYear() + (profile.retirementAge - currentAge)
 			: 0;
 		return {
+			textStyle: {
+				fontFamily: 'Inter, ui-sans-serif, system-ui, -apple-system, sans-serif'
+			},
 			tooltip: {
 				trigger: 'axis',
+				backgroundColor: 'rgba(17, 24, 39, 0.92)',
+				borderWidth: 0,
+				textStyle: { color: '#f9fafb', fontSize: 12 },
 				formatter: (params: any) => {
 					const p = params[0];
 					return `<strong>${p.name}</strong><br/>Portafoglio: ${formatCurrency(p.value)}`;
@@ -151,8 +157,14 @@
 			.map(([k, v]) => ({ name: labels[k] || k, value: v }));
 
 		return {
+			textStyle: {
+				fontFamily: 'Inter, ui-sans-serif, system-ui, -apple-system, sans-serif'
+			},
 			tooltip: {
 				trigger: 'item',
+				backgroundColor: 'rgba(17, 24, 39, 0.92)',
+				borderWidth: 0,
+				textStyle: { color: '#f9fafb', fontSize: 12 },
 				formatter: (p: any) => `${p.name}: ${formatCurrency(p.value)} (${p.percent.toFixed(1)}%)`
 			},
 			legend: {
