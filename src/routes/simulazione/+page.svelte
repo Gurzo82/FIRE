@@ -1,4 +1,4 @@
-<script lang="ts">
+﻿<script lang="ts">
 	import { onMount } from 'svelte';
 	import {
 		Heading,
@@ -454,12 +454,12 @@
 					<strong>Cosa mostra:</strong> il <strong>tasso di successo</strong> della simulazione (percentuale di scenari in cui il patrimonio non si esaurisce prima della fine dell'orizzonte temporale).
 					L'anello colorato indica: <span class="text-green-600 dark:text-green-400 font-medium">verde</span> ≥95% (eccellente), 
 					<span class="text-amber-600 dark:text-amber-400 font-medium">giallo</span> 80–94% (buono/sufficiente), 
-					<span class="text-red-600 dark:text-red-400 font-medium">rosso</span> <80% (a rischio).
+					<span class="text-red-600 dark:text-red-400 font-medium">rosso</span> sotto 80% (a rischio).
 					Sotto: valore finale mediano, media e percentili P5–P95.
 				</p>
 				<p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
-					<strong>A cosa serve:</strong> valutare rapidamente la robustezza del piano. Un tasso >90% è considerato solido; 
-					se <80% serve rivedere spese, prelievo o allocazione. Usa la Simulazione per testare varianti.
+					<strong>A cosa serve:</strong> valutare rapidamente la robustezza del piano. Un tasso sopra 90% è considerato solido;
+					se sotto 80% serve rivedere spese, prelievo o allocazione. Usa la Simulazione per testare varianti.
 				</p>
 			</div>
 
@@ -541,3 +541,6 @@
 		animation: fadeIn 0.6s ease-out;
 	}
 </style>
+
+
+
