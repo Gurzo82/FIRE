@@ -42,6 +42,7 @@ import { locales } from '$lib/i18n/index';
 	let { children } = $props();
 
 	let sidebarOpen = $state(false);
+	let langMenuOpen = $state(false);
 
 	onMount(() => {
 		if (getNotificationPermission() === 'granted') {
@@ -101,45 +102,44 @@ import { locales } from '$lib/i18n/index';
 		</div>
 		<div class="flex items-center gap-2">
 			<!-- Language Switcher -->
-			<Dropdown
-				triggerClass="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
-				placement="bottom-end"
+			<button
+				id="language-switcher-button"
+				type="button"
+				aria-expanded={langMenuOpen}
+				aria-haspopup="true"
+				aria-label={t('settings.language')}
+				class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
 			>
-				{#snippet trigger()}
-					<button
-						type="button"
-						aria-expanded="false"
-						aria-haspopup="true"
-						aria-label={t('settings.language')}
-					>
-						<span class="text-base">{locales.find(l => l.code === getLocale())?.flag || '🇮🇹'}</span>
-						<span class="hidden sm:inline">{locales.find(l => l.code === getLocale())?.label || 'Italiano'}</span>
-					</button>
-				{/snippet}
-				{#snippet content()}
-					<div class="min-w-[120px]">
-						<ul class="py-1 text-sm text-gray-700 dark:text-gray-200" role="menu" aria-orientation="vertical" aria-label={t('settings.chooseLanguage')}>
-							{#each locales as locale}
-								<li>
-									<button
-										type="button"
-										class="flex w-full items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 {getLocale() === locale.code ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300' : ''}"
-										role="menuitem"
-										onclick={() => setLocale(locale.code)}
-									>
-										<span class="text-base">{locale.flag}</span>
-										<span>{locale.label}</span>
-										{#if getLocale() === locale.code}
-											<svg class="ml-auto w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-											</svg>
-										{/if}
-									</button>
-								</li>
-							{/each}
-						</ul>
-					</div>
-				{/snippet}
+				<span class="text-base">{locales.find(l => l.code === getLocale())?.flag || '🇮🇹'}</span>
+				<span class="hidden sm:inline">{locales.find(l => l.code === getLocale())?.label || 'Italiano'}</span>
+			</button>
+			<Dropdown
+				triggeredBy="#language-switcher-button"
+				placement="bottom-end"
+				bind:isOpen={langMenuOpen}
+			>
+				<div class="min-w-[120px]">
+					<ul class="py-1 text-sm text-gray-700 dark:text-gray-200" role="menu" aria-orientation="vertical" aria-label={t('settings.chooseLanguage')}>
+						{#each locales as locale}
+							<li>
+								<button
+									type="button"
+									class="flex w-full items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 {getLocale() === locale.code ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300' : ''}"
+									role="menuitem"
+									onclick={() => { setLocale(locale.code); langMenuOpen = false; }}
+								>
+									<span class="text-base">{locale.flag}</span>
+									<span>{locale.label}</span>
+									{#if getLocale() === locale.code}
+										<svg class="ml-auto w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+										</svg>
+									{/if}
+								</button>
+							</li>
+						{/each}
+					</ul>
+				</div>
 			</Dropdown>
 			<DarkMode ariaLabel="Cambia tema chiaro/scuro" />
 		</div>
