@@ -294,11 +294,11 @@
 	</div>
 
 	<!-- Program Description -->
-	<Card class="max-w-none mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800">
+	<Card class="max-w-none mb-6 p-4 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900 border-0 text-white shadow-lg">
 		<div class="flex items-start gap-3">
 			<FireSolid class="w-6 h-6 text-blue-500 mt-0.5 flex-shrink-0" />
-			<div class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-				<p class="font-medium text-blue-800 dark:text-blue-200 mb-2">
+			<div class="text-sm text-primary-50 leading-relaxed">
+				<p class="font-medium text-white mb-2">
 					Cos'è FIRE Planner e come ti aiuta
 				</p>
 				<p class="mb-2">
@@ -314,7 +314,7 @@
 					ottimizzazione fiscale dei prelievi (IRPEF, capital gains 26%/12,5%, bollo, IVAFE), 
 					stima della pensione INPS e calcolo del gap pensionistico.
 				</p>
-				<p class="text-xs text-blue-700 dark:text-blue-300">
+				<p class="text-xs text-primary-100">
 					🔒 <strong>Privacy totale:</strong> tutti i calcoli avvengono nel browser, i dati restano sul tuo dispositivo (IndexedDB) e non vengono mai inviati a server esterni.
 				</p>
 			</div>
@@ -329,6 +329,7 @@
 
 	<!-- Summary Cards Grid -->
 	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+		<div class="transition-transform hover:-translate-y-1">
 		<StatCard
 			title="Patrimonio Netto"
 			value={formatCurrency(netWorth)}
@@ -336,6 +337,8 @@
 			icon={WalletSolid}
 			color="blue"
 		/>
+		</div>
+		<div class="transition-transform hover:-translate-y-1">
 		<StatCard
 			title="FIRE Number"
 			value={formatCurrency(fireNumber)}
@@ -343,6 +346,8 @@
 			icon={FireSolid}
 			color="red"
 		/>
+		</div>
+		<div class="transition-transform hover:-translate-y-1">
 		<StatCard
 			title="Progresso FIRE"
 			value="{fireProgress.toFixed(1)}%"
@@ -351,6 +356,8 @@
 			color={fireProgress >= 75 ? 'green' : fireProgress >= 50 ? 'yellow' : 'primary'}
 			trend={fireProgress >= 50 ? 'up' : 'neutral'}
 		/>
+		</div>
+		<div class="transition-transform hover:-translate-y-1">
 		<StatCard
 			title="Anni al FIRE"
 			value={yearsToFire === -1 ? 'N/D' : yearsToFire === 0 ? 'Raggiunto!' : `${yearsToFire} anni`}
@@ -358,6 +365,8 @@
 			icon={CalendarMonthSolid}
 			color={yearsToFire === 0 ? 'green' : yearsToFire <= 10 ? 'yellow' : 'primary'}
 		/>
+		</div>
+		<div class="transition-transform hover:-translate-y-1">
 		<StatCard
 			title="Tasso di Risparmio"
 			value={formatPercent(savingsRate * 100)}
@@ -366,6 +375,8 @@
 			color={savingsRate >= 0.5 ? 'green' : savingsRate >= 0.3 ? 'yellow' : 'red'}
 			trend={savingsRate >= 0.3 ? 'up' : 'down'}
 		/>
+		</div>
+		<div class="transition-transform hover:-translate-y-1">
 		<StatCard
 			title="Reddito Mensile FIRE"
 			value={formatCurrency(monthlyFireIncome)}
@@ -373,6 +384,7 @@
 			icon={HomeSolid}
 			color="green"
 		/>
+		</div>
 	</div>
 
 	<!-- FIRE Progress Bar -->
